@@ -18,6 +18,7 @@ use winapi::shared::ntddscsi::{IOCTL_SCSI_PASS_THROUGH_DIRECT, SCSI_PASS_THROUGH
 
 const CDB_LEN: u8 = 12;
 const TIMEOUT: u32 = 30;
+const BusTypeUsb: u32 = 7;
 
 pub struct SPTD{
     sptd: SCSI_PASS_THROUGH_DIRECT,
@@ -129,7 +130,7 @@ pub fn get_handle_colls(devices: &Vec<String>) -> Vec<(&String, HANDLE)> {
     for d in devices {
         let h: HANDLE = open_device(d);
         let bus_type = get_bus_type(h);
-        if bus_type == 7 {
+        if bus_type == BusTypeUsb {
             handle_colls.push((d, h));
         }
     }

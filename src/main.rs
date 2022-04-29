@@ -17,6 +17,6 @@ fn main() {
         println!("====");
 
         let s = String::from_utf8(data_buf.to_vec()).expect("Found invalid UTF-8");
-        println!("handle={:x}, s={}", h as u32, s);
+        println!("handle={:x}, inquiry={}", h as u32, s);
     }
 }
